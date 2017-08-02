@@ -27,3 +27,9 @@
 <% end %>
 
 <%= link_to "Add new reward", new_project_reward_path(@project) %>
+
+
+<h2>Pledge</h2>
+<% @project.pledges.each do |p| %>
+  <p><%= User.find(p.user_id).first_name %> makes <%= p.dollar_amount %>$ pledge</p>
+<% end %>
