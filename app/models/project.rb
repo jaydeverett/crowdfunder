@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   validate :start_in_future
   validate :end_date_is_later_than_sart_date
   validate :goal_must_be_positive
+  validate :total_pledge
 
 
   def start_in_future
@@ -27,6 +28,10 @@ class Project < ActiveRecord::Base
     if self.goal <= 0
       errors.add :goal, "Goal must be positive"
     end
+  end
+
+  def total_pledge
+    pledges.map {|p| p.dollar_amount}.sum
   end
 
 

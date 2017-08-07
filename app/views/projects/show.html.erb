@@ -33,3 +33,4 @@
 <% @project.pledges.each do |p| %>
   <p><%= User.find(p.user_id).first_name %> makes <%= p.dollar_amount %>$ pledge</p>
 <% end %>
+<%= @total_pledge %>
