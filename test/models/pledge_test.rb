@@ -13,6 +13,10 @@ class PledgeTest < ActiveSupport::TestCase
     assert pledge.persisted?
   end
 
+  # def test_owner_cannot_back_own_project
+  #
+  # end
+
   test 'owner cannot back own project' do
     owner = new_user
     owner.save

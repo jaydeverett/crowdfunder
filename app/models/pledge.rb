@@ -11,4 +11,5 @@ class Pledge < ApplicationRecord
       errors.add :user, "Cannot back own project"
     end
   end
+  
 end
