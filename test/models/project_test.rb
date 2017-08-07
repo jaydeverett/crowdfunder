@@ -2,16 +2,6 @@ require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
 
-
-
-  def test_project_is_invaild_without_owner
-    user = create(:user)
-    owner = create(:owner)
-    project = create(:project, owner: owner)
-
-    assert project.owner.valid?
-  end
-
   test 'end date is later than start date' do
 
     user = create(:user)
@@ -46,6 +36,14 @@ class ProjectTest < ActiveSupport::TestCase
     assert project.valid?, "not future!"
   end
 
+  def test_project_is_invaild_without_owner
+    user = create(:user)
+    owner = create(:owner)
+    project = create(:project, owner: owner)
+
+    assert project.owner.valid?
+  end
+  
   test 'how many times a specific reward cab be claimed' do
 
     owner = new_user
