@@ -127,6 +127,7 @@ class ProjectTest < ActiveSupport::TestCase
     )
   end
 
+<<<<<<< HEAD
   def new_reward
     Reward.new(
     description: 'hi',
@@ -134,4 +135,21 @@ class ProjectTest < ActiveSupport::TestCase
     )
   end
 
+=======
+  test "owner can see who has backed project" do
+    project = new_project
+    backer = new_user
+    dude = new_user
+    dude.email = "dude@aol.com"
+    project.owner = dude
+    pledge = Pledge.new(project: project, user: backer, dollar_amount: 100)
+
+    project.save!
+    backer.save!
+    dude.save!
+    pledge.save!
+
+    assert_equal project.backers, User.where(email: backer.email)
+    end
+>>>>>>> 2c0519fbc049d7945853e7b92b8c583e1139c515
 end
