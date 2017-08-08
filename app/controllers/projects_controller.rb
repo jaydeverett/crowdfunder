@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-  
+
   end
 
   def new
@@ -18,7 +18,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-
+    @project[:owner_id] = current_user.id
+    puts "==========save??============"
     if @project.save
       redirect_to projects_url
     else

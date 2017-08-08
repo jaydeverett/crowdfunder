@@ -6,8 +6,12 @@
 
 <p><%= @project.description %></p>
 <p>Goal: <%= number_to_currency(@project.goal) %></p>
+
 <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
+<time class="project-days-left-show">
+  <%= icon('clock-o') %>
+  <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %></time>
 
 <%= form_for [@project, Pledge.new] do |f| %>
   <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
@@ -30,7 +34,19 @@
 
 
 <h2>Pledge</h2>
+<% sum = 0 %>
+<% num_of_pledges = 0 %>
 <% @project.pledges.each do |p| %>
   <p><%= User.find(p.user_id).first_name %> makes <%= p.dollar_amount %>$ pledge</p>
+  <% sum += p.dollar_amount %>
+  <% if User.find(p.user_id).id == current_user.id %>
+    <% num_of_pledges += 1 %>
+  <% end %>
 <% end %>
-<%= @total_pledge %>
+<h2>Total amount pledged: $<%= sum %></h2>
+<h2>You have backed this project <%= num_of_pledges %> times.</h2>
+
+<h2>Rewards Claimed</h2>
+<% @project.rewards.each do |p| %>
+  <p><%= User.find(p.project_id).first_name %> claimed a reward of <%= p.description %> reward</p>
+<% end %>
