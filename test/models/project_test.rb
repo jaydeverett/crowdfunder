@@ -43,7 +43,7 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert project.owner.valid?
   end
-  
+
   test 'how many times a specific reward cab be claimed' do
 
     owner = new_user
@@ -127,15 +127,7 @@ class ProjectTest < ActiveSupport::TestCase
     )
   end
 
-<<<<<<< HEAD
-  def new_reward
-    Reward.new(
-    description: 'hi',
-    dollar_amount: 100
-    )
-  end
 
-=======
   test "owner can see who has backed project" do
     project = new_project
     backer = new_user
@@ -151,5 +143,5 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert_equal project.backers, User.where(email: backer.email)
     end
->>>>>>> 2c0519fbc049d7945853e7b92b8c583e1139c515
+
 end
