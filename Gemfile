@@ -25,6 +25,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'faker'
   gem 'factory_girl_rails'
+  gem 'capybara'
 end
 
 group :development do

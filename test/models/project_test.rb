@@ -144,4 +144,6 @@ class ProjectTest < ActiveSupport::TestCase
     assert_equal project.backers, User.where(email: backer.email)
     end
 
+
+
 end

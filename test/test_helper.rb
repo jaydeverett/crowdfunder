@@ -13,6 +13,9 @@ end
 # Regular test setup
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'minitest/pride'
+require 'capybara/rails'
+require 'capybara/minitest'
 
 # Include sorcery test helpers in controller tests
 class ActionController::TestCase
@@ -23,4 +26,12 @@ end
 
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
+end
+
+class ActionDispatch::IntegrationTest
+  include Capybara::DSL
+
+  def teardown
+    Capybara.reset_sessions!
+  end
 end
