@@ -39,7 +39,7 @@
 <% @project.pledges.each do |p| %>
   <p><%= User.find(p.user_id).first_name %> makes <%= p.dollar_amount %>$ pledge</p>
   <% sum += p.dollar_amount %>
-  <% if User.find(p.user_id).id == current_user.id %>
+  <% if User.find(p.user_id).id == current_user&.id %>
     <% num_of_pledges += 1 %>
   <% end %>
 <% end %>
