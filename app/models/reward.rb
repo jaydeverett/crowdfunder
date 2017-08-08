@@ -19,4 +19,7 @@ class Reward < ActiveRecord::Base
    end
  end
 
+  def max_quantity_for_reward
+
+  end
 end

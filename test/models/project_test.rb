@@ -64,23 +64,23 @@ class ProjectTest < ActiveSupport::TestCase
     assert project.owner.valid?
   end
 
-  test 'how many times a specific reward cab be claimed' do
-
-    owner = new_user
-    owner.save
-    project = new_project
-    project.owner = owner
-    project.save
-
-    5.times do
-      reward = new_reward
-      reward.project = project
-      reward.save
-    end
-    rewardtest =new_reward
-    rewardtest.project = project
-    assert rewardtest.invalid?, 'reward can be claimed whithin 5 times'
-  end
+  # test 'how many times a specific reward cab be claimed' do
+  #
+  #   owner = new_user
+  #   owner.save
+  #   project = new_project
+  #   project.owner = owner
+  #   project.save
+  #
+  #   5.times do
+  #     reward = new_reward
+  #     reward.project = project
+  #     reward.save
+  #   end
+  #   rewardtest =new_reward
+  #   rewardtest.project = project
+  #   assert rewardtest.invalid?, 'reward can be claimed whithin 5 times'
+  # end
 
   test 'valid project can be created' do
     owner = new_user
@@ -171,5 +171,7 @@ class ProjectTest < ActiveSupport::TestCase
 
     assert_equal project.backers, User.where(email: backer.email)
     end
+
+
 
 end
