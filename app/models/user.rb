@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-
+  # has_secure_password
   has_many :pledges
 
   validates :password, length: { minimum: 8, too_short: "password characters is too short"}, on: :create

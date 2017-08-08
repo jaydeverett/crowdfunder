@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :rewards, only: [:new, :create, :destroy]
     resources :comments 
   end
-  resources :users, only: [:new, :create]
-  resources :user_sessions, only: [:create]
+  resources :users, only: [:new, :create, :destroy]
+  resources :user_sessions, only: [:new, :create, :destroy]
 
 
 

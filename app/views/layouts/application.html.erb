@@ -24,9 +24,10 @@
         <% end %>
       </nav>
     </header>
-
+    <% if flash.any? %>
     <% flash.each do |key, message| %>
-      <div class="flash-<%= key %>"><%= message %></div>
+      <div class="<%= key %>"><%= message %></div>
+    <% end %>
     <% end %>
 
     <main>

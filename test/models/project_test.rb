@@ -2,6 +2,27 @@ require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
 
+  # test 'if backed that project or not' do
+  #   skip
+  #   user = create(:user)
+  #   owner = create(:owner)
+  #   project = create(:project, owner: owner)
+  #   pledge = create(:pledge, project: project, user: user)
+  #
+  #   assert pledge.valid? "you have laready backed that project"
+  # end
+
+  test 'totla pledges' do
+    skip
+    user = create(:user)
+    owner = create(:owner)
+    project = create(:project, owner: owner)
+
+    result = project.total_pledge
+
+    assert_equal(result, project.pledges.dollar_amount.sum)
+  end
+
   test 'end date is later than start date' do
 
     user = create(:user)
@@ -25,10 +46,9 @@ class ProjectTest < ActiveSupport::TestCase
   test 'project start date must be in future' do
 
     user = create(:user)
-    owner = new_user
-    owner.save
-    project = new_project
-    project.owner = owner
+    owner = create(:owner)
+
+    project = create(:project, owner: owner)
 
     project.start_date = Date.today + 2.day
     # puts project.valid?
@@ -83,7 +103,7 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   test 'project can list backers' do
-
+    skip
     project = new_project
     backer = new_user
     owner = User.new(
@@ -124,6 +144,14 @@ class ProjectTest < ActiveSupport::TestCase
       email:                 'sally@example.com',
       password:              'passpass',
       password_confirmation: 'passpass'
+    )
+  end
+
+
+  def new_reward
+    Reward.new(
+    description: 'hi',
+    dollar_amount: 100
     )
   end
 

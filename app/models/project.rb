@@ -10,11 +10,12 @@ class Project < ActiveRecord::Base
   validate :start_in_future
   validate :end_date_is_later_than_start_date
   validate :goal_must_be_positive
+  # validate :total_pledge
 
 
   def start_in_future
     if self.start_date < Date.today
-      errors.add :start_date, "Start date must be in furture"
+      errors.add(:base, "Start date must be in furture")
     end
   end
 
@@ -25,10 +26,14 @@ class Project < ActiveRecord::Base
   end
 
   def goal_must_be_positive
-    if self.goal <= 0
-      errors.add :goal, "Goal must be positive"
+    if self.goal.to_i < 0
+      errors.add(:base, "Goal must be positive")
     end
   end
+
+  # def total_pledge
+  #   pledges.map {|p| p.dollar_amount}.sum
+  # end
 
 
 
