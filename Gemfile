@@ -34,7 +34,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'awesome_print'
-
+  gem 'guard'
+  gem 'guard-minitest'
 end
 
 group :test do
@@ -42,6 +43,6 @@ group :test do
   gem 'minitest-reporters'
   gem 'rails-controller-testing'
   gem 'simplecov', require: false
-  gem 'guard', '~> 2.14.0'
+  gem 'guard'
   gem 'guard-minitest'
 end
