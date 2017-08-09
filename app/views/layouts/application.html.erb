@@ -25,9 +25,9 @@
       </nav>
     </header>
     <% if flash.any? %>
-    <% flash.each do |key, message| %>
-      <div class="<%= key %>"><%= message %></div>
-    <% end %>
+      <% flash.each do |key, message| %>
+        <div class="<%= key %>"><%= message %></div>
+      <% end %>
     <% end %>
 
     <main>
